@@ -1,1 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Einladung 40. Geburtstag</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8f5;
+      color: #2e7d32;
+      padding: 2em;
+      text-align: center;
+    }
 
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.3em;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 0.5em 0;
+    }
+
+    label {
+      display: block;
+      margin: 1em 0 0.3em 0;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      padding: 0.5em;
+      font-size: 1em;
+      width: 250px;
+      border: 2px solid #2e7d32;
+      border-radius: 6px;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 0.5em;
+      vertical-align: middle;
+    }
+
+    button {
+      margin-top: 2em;
+      padding: 0.7em 1.5em;
+      font-size: 1.1em;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #27632a;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 2em;
+      padding: 0.6em 1.2em;
+      background-color: #2e7d32;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    a:hover {
+      background-color: #27632a;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Einladung zum 40. Geburtstag 🎉</h1>
+  <p><strong>Datum:</strong> 24.01.2025</p>
+  <p><strong>Ort:</strong> Restaurant „Zum Glücklich“</p>
+  <p><strong>Uhrzeit:</strong> 18:00 Uhr</p>
+  <p>Bitte um Rückmeldung bis zum <strong>03.01.2026</strong></p>
+
+  <form action="https://formspree.io/f/mvgqgowa" method="POST">
+    <!-- Teilnahmeauswahl -->
+    <label>
+      <input type="checkbox" name="teilnahme" value="Ja" id="jaCheckbox" />
+      Ich nehme teil
+    </label>
+
+    <label>
+      <input type="checkbox" name="teilnahme" value="Nein" id="neinCheckbox" />
+      Ich kann leider nicht teilnehmen
+    </label>
+
+    <label for="vorname">Vorname:</label>
+    <input type="text" id="vorname" name="vorname" required />
+
+    <label for="nachname">Nachname:</label>
+    <input type="text" id="nachname" name="nachname" required />
+
+    <!-- Honeypot-Feld für Spam-Schutz -->
+    <input type="text" name="_gotcha" style="display:none" />
+
+    <button type="submit">Absenden</button>
+  </form>
+
+  <a href="index.html">🔙 Zurück zur Startseite</a>
+
+  <script>
+    // Nur eine Checkbox gleichzeitig aktivieren
+    const ja = document.getElementById("jaCheckbox");
+    const nein = document.getElementById("neinCheckbox");
+
+    ja.addEventListener("change", () => {
+      if (ja.checked) nein.checked = false;
+    });
+
+    nein.addEventListener("change", () => {
+      if (nein.checked) ja.checked = false;
+    });
+  </script>
+</body>
+</html>
