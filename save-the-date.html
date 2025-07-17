@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Save the Date - Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2em;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3em;
+      color: #2c3e50;
+      margin-bottom: 0.2em;
+    }
+    #quiz-container {
+      background: white;
+      border-radius: 10px;
+      padding: 2em;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+      margin-bottom: 2em;
+    }
+    .question {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+    .answers button {
+      display: block;
+      width: 100%;
+      margin: 0.5em 0;
+      padding: 0.75em;
+      font-size: 1.2em;
+      border: 2px solid #3498db;
+      background: white;
+      color: #3498db;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .answers button:hover {
+      background-color: #3498db;
+      color: white;
+    }
+    .answers button.correct {
+      background-color: #2ecc71;
+      color: white;
+      border-color: #27ae60;
+      cursor: default;
+    }
+    .answers button.wrong {
+      background-color: #e74c3c;
+      color: white;
+      border-color: #c0392b;
+      cursor: default;
+    }
+    #next-btn {
+      margin-top: 1.5em;
+      padding: 0.75em 1.5em;
+      font-size: 1.2em;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      display: none;
+    }
+    #info {
+      max-width: 600px;
+      background: #dff0d8;
+      border: 2px solid #3c763d;
+      border-radius: 10px;
+      padding: 1.5em;
+      color: #3c763d;
+      font-size: 1.2em;
+    }
+    #wrong-image {
+      margin-top: 1em;
+      max-width: 100%;
+      border-radius: 10px;
+      display: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>Save the Date</h1>
+  <div id="quiz-container">
+    <div class="question" id="question">Grund der Einladung?</div>
+    <div class="answers" id="answers">
+      <!-- Antwort-Buttons kommen hier hin -->
+    </div>
+    <button id="next-btn">Nächste Frage</button>
+  </div>
+
+  <div id="info" style="display:none;">
+    <h2>Wichtige Informationen zum 40igsten Geburtstag</h2>
+    <p>Datum: 12. September 2025<br />
+       Ort: Restaurant Zum Glücklich<br />
+       Uhrzeit: 18:00 Uhr<br />
+       Bitte bring gute Laune mit! 🎉</p>
+  </div>
+
+  <img id="wrong-image" src="" alt="Falsche Antwort Bild" />
+
+  <script>
+    const quizData = [
+      {
+        question: "Grund der Einladung?",
+        answers: [
+          { text: "Hekelabend", correct: false },
+          { text: "40igster Geburtstag", correct: true },
+          { text: "Festival", correct: false },
+          { text: "Gemeinsames Joggen", correct: false },
+        ],
+      },
+    ];
+
+    let currentQuestionIndex = 0;
+
+    const questionEl = document.getElementById('question');
+    const answersEl = document.getElementById('answers');
+    const nextBtn = document.getElementById('next-btn');
+    const infoDiv = document.getElementById('info');
+    const wrongImage = document.getElementById('wrong-image');
+
+    function showQuestion() {
+      clearState();
+      infoDiv.style.display = 'none';
+      wrongImage.style.display = 'none';
+      let currentQuestion = quizData[currentQuestionIndex];
+      questionEl.innerText = currentQuestion.question;
+
+      currentQuestion.answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.innerText = answer.text;
+        button.classList.add('answer-btn');
+        if (answer.correct) {
+          button.dataset.correct = answer.correct;
+        }
+        button.addEventListener('click', selectAnswer);
+        answersEl.appendChild(button);
+      });
+    }
+
+    function clearState() {
+      nextBtn.style.display = 'none';
+      while (answersEl.firstChild) {
+        answersEl.removeChild(answersEl.firstChild);
+      }
+    }
+
+    function selectAnswer(e) {
+      const selectedBtn = e.target;
+      const correct = selectedBtn.dataset.correct === 'true';
+
+      Array.from(answersEl.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct === 'true');
+        button.disabled = true;
+      });
+
+      if (correct) {
+        infoDiv.style.display = 'block';
+        wrongImage.style.display = 'none';
+      } else {
+        infoDiv.style.display = 'none';
+        wrongImage.style.display = 'block';
+        // Hier Bild-URL einfügen, sobald du das Bild hast:
+        wrongImage.src = 'https://via.placeholder.com/600x400?text=Falsche+Antwort'; 
+      }
+
+      nextBtn.style.display = 'inline-block';
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < quizData.length) {
+        showQuestion();
+      } else {
+        showEndMessage();
+      }
+    });
+
+    function setStatusClass(element, correct) {
+      clearStatusClass(element);
+      if (correct) {
+        element.classList.add('correct');
+      } else {
+        element.classList.add('wrong');
+      }
+    }
+
+    function clearStatusClass(element) {
+      element.classList.remove('correct');
+      element.classList.remove('wrong');
+    }
+
+    function showEndMessage() {
+      clearState();
+      questionEl.innerText = "Danke fürs Mitmachen! Wir freuen uns auf dich!";
+      infoDiv.style.display = 'none';
+      wrongImage.style.display = 'none';
+      nextBtn.style.display = 'none';
+    }
+
+    // Quiz starten
+    showQuestion();
+  </script>
+</body>
+</html>
