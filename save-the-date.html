@@ -12,17 +12,31 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       padding: 2em;
-      min-height: 100vh;
-      margin: 0;
       text-align: center;
     }
+
     h1 {
       font-size: 3em;
       color: #2c3e50;
       margin-bottom: 0.2em;
     }
+
+    .calendar-date {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2em;
+      font-size: 1.5em;
+      color: #2c3e50;
+    }
+
+    .calendar-date svg {
+      width: 28px;
+      height: 28px;
+      fill: #2c3e50;
+    }
+
     #quiz-container {
       background: white;
       border-radius: 10px;
@@ -30,12 +44,13 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       max-width: 600px;
       width: 100%;
-      margin-bottom: 2em;
     }
+
     .question {
       font-size: 1.5em;
       margin-bottom: 1em;
     }
+
     .answers button {
       display: block;
       width: 100%;
@@ -49,22 +64,26 @@
       cursor: pointer;
       transition: background-color 0.3s, color 0.3s;
     }
+
     .answers button:hover {
       background-color: #3498db;
       color: white;
     }
+
     .answers button.correct {
       background-color: #2ecc71;
       color: white;
       border-color: #27ae60;
       cursor: default;
     }
+
     .answers button.wrong {
       background-color: #e74c3c;
       color: white;
       border-color: #c0392b;
       cursor: default;
     }
+
     #next-btn {
       margin-top: 1.5em;
       padding: 0.75em 1.5em;
@@ -76,6 +95,7 @@
       cursor: pointer;
       display: none;
     }
+
     #info {
       max-width: 600px;
       background: #dff0d8;
@@ -84,45 +104,45 @@
       padding: 1.5em;
       color: #3c763d;
       font-size: 1.2em;
-    }
-    #wrong-image {
-      margin-top: 1em;
-      max-width: 100%;
-      border-radius: 10px;
+      margin-top: 2em;
       display: none;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
   <h1>Save the Date</h1>
+  <div class="calendar-date">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M7 10h5v5H7z" fill="#2c3e50"/>
+      <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 
+      2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zm0-13H5V6h14v1z"/>
+    </svg>
+    <strong>24.01.2025</strong>
+  </div>
+
   <div id="quiz-container">
     <div class="question" id="question">Grund der Einladung?</div>
-    <div class="answers" id="answers">
-      <!-- Antwort-Buttons kommen hier hin -->
-    </div>
+    <div class="answers" id="answers"></div>
     <button id="next-btn">Nächste Frage</button>
   </div>
 
-  <div id="info" style="display:none;">
-    <h2>Wichtige Informationen zum 40igsten Geburtstag</h2>
-    <p>Datum: 12. September 2025<br />
-       Ort: Restaurant Zum Glücklich<br />
-       Uhrzeit: 18:00 Uhr<br />
-       Bitte bring gute Laune mit! 🎉</p>
+  <div id="info">
+    <h2>🎉 Einladung zum 40igsten Geburtstag!</h2>
+    <p>📍 Ort: Vierseithof Schmole“<br />
+       🕕 Uhrzeit: 18:00 Uhr<br />
+       🎁 Ich erwarte Euch!</p>
   </div>
-
-  <img id="wrong-image" src="" alt="Falsche Antwort Bild" />
 
   <script>
     const quizData = [
       {
         question: "Grund der Einladung?",
         answers: [
-          { text: "Hekelabend", correct: false },
+          { text: "Häkeln", correct: false },
           { text: "40igster Geburtstag", correct: true },
-          { text: "Festival", correct: false },
-          { text: "Gemeinsames Joggen", correct: false },
+          { text: "Yogaabend", correct: false },
+          { text: "Ostereier bemalen", correct: false },
+	  { text: "Büchervorstellung", correct: false },
         ],
       },
     ];
@@ -133,12 +153,10 @@
     const answersEl = document.getElementById('answers');
     const nextBtn = document.getElementById('next-btn');
     const infoDiv = document.getElementById('info');
-    const wrongImage = document.getElementById('wrong-image');
 
     function showQuestion() {
       clearState();
       infoDiv.style.display = 'none';
-      wrongImage.style.display = 'none';
       let currentQuestion = quizData[currentQuestionIndex];
       questionEl.innerText = currentQuestion.question;
 
@@ -171,13 +189,9 @@
       });
 
       if (correct) {
-        infoDiv.style.display = 'block';
-        wrongImage.style.display = 'none';
+        window.open('info.html', '_blank');
       } else {
-        infoDiv.style.display = 'none';
-        wrongImage.style.display = 'block';
-        // Hier Bild-URL einfügen, sobald du das Bild hast:
-        wrongImage.src = 'https://via.placeholder.com/600x400?text=Falsche+Antwort'; 
+        window.open('wrong.html', '_blank');
       }
 
       nextBtn.style.display = 'inline-block';
@@ -210,11 +224,9 @@
       clearState();
       questionEl.innerText = "Danke fürs Mitmachen! Wir freuen uns auf dich!";
       infoDiv.style.display = 'none';
-      wrongImage.style.display = 'none';
       nextBtn.style.display = 'none';
     }
 
-    // Quiz starten
     showQuestion();
   </script>
 </body>
