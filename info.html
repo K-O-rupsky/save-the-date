@@ -28,12 +28,18 @@
       font-weight: bold;
     }
 
-    input[type="text"] {
+    input[type="text"],
+    textarea {
       padding: 0.5em;
       font-size: 1em;
       width: 250px;
       border: 2px solid #2e7d32;
       border-radius: 6px;
+    }
+
+    textarea {
+      width: 300px;
+      resize: vertical;
     }
 
     input[type="checkbox"] {
@@ -75,8 +81,8 @@
 </head>
 <body>
   <h1>🎉 Einladung zum 40. Geburtstag 🎉</h1>
-  <p><strong>Datum:</strong> 24.01.2026</p>
-  <p><strong>Ort:</strong> Vierseithof Schmole in Horka</p>
+  <p><strong>Datum:</strong> 24.01.2025</p>
+  <p><strong>Ort:</strong> Restaurant „Zum Glücklich“</p>
   <p><strong>Uhrzeit:</strong> 18:00 Uhr</p>
   <p>Bitte um Rückmeldung bis zum <strong>03.01.2026</strong></p>
 
@@ -97,6 +103,10 @@
 
     <label for="nachname">Nachname:</label>
     <input type="text" id="nachname" name="nachname" required />
+
+    <!-- Optionales Freitextfeld -->
+    <label for="nachricht">Freitext</label>
+    <textarea id="nachricht" name="nachricht" rows="4" placeholder="z. B. Ich bringe Kuchen mit 😉"></textarea>
 
     <!-- Honeypot-Feld für Spam-Schutz -->
     <input type="text" name="_gotcha" style="display:none" />
