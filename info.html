@@ -1,130 +1,144 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Einladung zum 40. Geburtstag</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f8f5;
-      color: #2e7d32;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .side-image {
+      width: 30%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .left {
+      background-image: url('nein.jpg'); /* ← hier Bildpfad anpassen */
+    }
+
+    .right {
+      background-image: url('yoga.jpg'); /* ← hier Bildpfad anpassen */
+    }
+
+    .form-wrapper {
+      width: 40%;
       padding: 2em;
-      text-align: center;
+      box-sizing: border-box;
+      background-color: #fff;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.3em;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin: 0.5em 0;
+      color: #e67e22;
+      text-align: center;
     }
 
     label {
       display: block;
-      margin: 1em 0 0.3em 0;
+      margin-top: 1em;
       font-weight: bold;
     }
 
-    input[type="text"],
-    textarea {
+    input[type="text"], textarea {
+      width: 100%;
       padding: 0.5em;
-      font-size: 1em;
-      width: 250px;
-      border: 2px solid #2e7d32;
-      border-radius: 6px;
+      margin-top: 0.3em;
+      box-sizing: border-box;
     }
 
-    textarea {
-      width: 300px;
-      resize: vertical;
+    .checkbox-group {
+      margin-top: 1em;
     }
 
-    input[type="checkbox"] {
-      transform: scale(1.2);
-      margin-right: 0.5em;
-      vertical-align: middle;
+    .checkbox-group label {
+      font-weight: normal;
+      display: block;
+      margin: 0.5em 0;
     }
 
     button {
       margin-top: 2em;
-      padding: 0.7em 1.5em;
-      font-size: 1.1em;
-      background-color: #2e7d32;
+      background-color: #e67e22;
       color: white;
       border: none;
-      border-radius: 8px;
+      padding: 1em 2em;
+      font-size: 1em;
       cursor: pointer;
+      border-radius: 5px;
     }
 
     button:hover {
-      background-color: #27632a;
+      background-color: #d35400;
     }
 
-    a {
-      display: inline-block;
+    .zurueck {
+      text-align: center;
       margin-top: 2em;
-      padding: 0.6em 1.2em;
-      background-color: #2e7d32;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1em;
     }
 
-    a:hover {
-      background-color: #27632a;
+    .zurueck a {
+      text-decoration: none;
+      color: #3498db;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .side-image {
+        display: none;
+      }
+
+      .form-wrapper {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>🎉 Einladung zum 40. Geburtstag 🎉</h1>
-  <p><strong>Datum:</strong> 24.01.2026</p>
-  <p><strong>Ort:</strong> Vierseithof Schmole</p>
-  <p><strong>Uhrzeit:</strong> 18:00 Uhr</p>
-  <p>Bitte um Rückmeldung bis zum <strong>03.01.2026</strong></p>
 
-  <form action="https://formspree.io/f/mvgqgowa" method="POST">
-    <!-- Teilnahmeauswahl -->
-    <label>
-      <input type="checkbox" name="teilnahme" value="Ja" id="jaCheckbox" />
-      Ich nehme teil
-      <input type="checkbox" name="teilnahme" value="Nein" id="neinCheckbox" />
-      Ich kann leider nicht teilnehmen
-    </label>
+<div class="container">
+  <div class="side-image left"></div>
 
-    <label for="vorname">Vorname:</label>
-    <input type="text" id="vorname" name="vorname" required />
+  <div class="form-wrapper">
+    <h1>Einladung zum 40. Geburtstag</h1>
+    <p>Bitte gib Bescheid, ob du dabei sein kannst – <strong>bis spätestens 03.01.2026</strong>.</p>
 
-    <label for="nachname">Nachname:</label>
-    <input type="text" id="nachname" name="nachname" required />
+    <form action="https://formspree.io/f/mwkgbqop" method="POST">
+      <label for="vorname">Vorname</label>
+      <input type="text" id="vorname" name="vorname" required>
 
-    <!-- Optionales Freitextfeld -->
-    <label for="nachricht">Freitext</label>
-    <textarea id="nachricht" name="nachricht" rows="4" placeholder="z. B. Ich bringe Kuchen mit 😉"></textarea>
+      <label for="nachname">Nachname</label>
+      <input type="text" id="nachname" name="nachname" required>
 
-    <!-- Honeypot-Feld für Spam-Schutz -->
-    <input type="text" name="_gotcha" style="display:none" />
+      <div class="checkbox-group">
+        <label><input type="radio" name="teilnahme" value="ja" required> Ich nehme teil</label>
+        <label><input type="radio" name="teilnahme" value="nein"> Ich kann leider nicht teilnehmen</label>
+      </div>
 
-    <button type="submit">Absenden</button>
-  </form>
+      <label for="nachricht">Möchtest Du mir noch etwas mitteilen? (optional)</label>
+      <textarea id="nachricht" name="nachricht" rows="4" placeholder="z. B. Ich bringe Kuchen mit 😊"></textarea>
 
-  <a href="save-the-date.html">🔙 Zurück zur Startseite</a>
+      <button type="submit">Absenden</button>
+    </form>
 
-  <script>
-    // Nur eine Checkbox gleichzeitig aktivieren
-    const ja = document.getElementById("jaCheckbox");
-    const nein = document.getElementById("neinCheckbox");
+    <div class="zurueck">
+      <a href="save-the-date.html">🔙 Zurück zur Startseite</a>
+    </div>
+  </div>
 
-    ja.addEventListener("change", () => {
-      if (ja.checked) nein.checked = false;
-    });
+  <div class="side-image right"></div>
+</div>
 
-    nein.addEventListener("change", () => {
-      if (nein.checked) ja.checked = false;
-    });
-  </script>
 </body>
 </html>
