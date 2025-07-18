@@ -1,233 +1,66 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Save the Date - Quiz</title>
+  <meta charset="UTF-8">
+  <title>Save the Date</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2em;
+      background-color: #fff8f0;
       text-align: center;
+      padding: 3em;
+      color: #333;
     }
 
     h1 {
-      font-size: 3em;
-      color: #2c3e50;
+      font-size: 2.5em;
       margin-bottom: 0.2em;
     }
 
-    .calendar-date {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .date {
+      font-size: 1.5em;
+      color: #e67e22;
       margin-bottom: 2em;
-      font-size: 1.5em;
-      color: #2c3e50;
     }
 
-    .calendar-date svg {
-      width: 28px;
-      height: 28px;
-      fill: #2c3e50;
+    .calendar {
+      font-size: 2em;
+      margin-right: 0.2em;
+      vertical-align: middle;
     }
 
-    #quiz-container {
-      background: white;
-      border-radius: 10px;
-      padding: 2em;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      max-width: 600px;
-      width: 100%;
+    h2 {
+      font-size: 1.8em;
+      margin: 1em 0;
     }
 
-    .question {
-      font-size: 1.5em;
-      margin-bottom: 1em;
-    }
-
-    .answers button {
+    button {
       display: block;
-      width: 100%;
-      margin: 0.5em 0;
-      padding: 0.75em;
+      width: 250px;
+      margin: 1em auto;
+      padding: 1em;
       font-size: 1.2em;
-      border: 2px solid #3498db;
-      background: white;
-      color: #3498db;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .answers button:hover {
-      background-color: #3498db;
+      background-color: #f4a261;
       color: white;
-    }
-
-    .answers button.correct {
-      background-color: #2ecc71;
-      color: white;
-      border-color: #27ae60;
-      cursor: default;
-    }
-
-    .answers button.wrong {
-      background-color: #e74c3c;
-      color: white;
-      border-color: #c0392b;
-      cursor: default;
-    }
-
-    #next-btn {
-      margin-top: 1.5em;
-      padding: 0.75em 1.5em;
-      font-size: 1.2em;
       border: none;
-      background-color: #3498db;
-      color: white;
-      border-radius: 6px;
+      border-radius: 10px;
       cursor: pointer;
-      display: none;
+      transition: background-color 0.3s ease;
     }
 
-    #info {
-      max-width: 600px;
-      background: #dff0d8;
-      border: 2px solid #3c763d;
-      border-radius: 10px;
-      padding: 1.5em;
-      color: #3c763d;
-      font-size: 1.2em;
-      margin-top: 2em;
-      display: none;
+    button:hover {
+      background-color: #e76f51;
     }
   </style>
 </head>
 <body>
-  <h1>Save the Date</h1>
-  <div class="calendar-date">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M7 10h5v5H7z" fill="#2c3e50"/>
-      <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 
-      2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zm0-13H5V6h14v1z"/>
-    </svg>
-    <strong>24.01.2026</strong>
-  </div>
+  <h1><span class="calendar">📅</span> Save the Date</h1>
+  <div class="date">24.01.2026</div>
 
-  <div id="quiz-container">
-    <div class="question" id="question">Grund der Einladung?</div>
-    <div class="answers" id="answers"></div>
-    <button id="next-btn">Nächste Frage</button>
-  </div>
+  <h2>Wofür?</h2>
 
-  <div id="info">
-    <h2>🎉 Einladung zum 40igsten Geburtstag!</h2>
-    <p>📍 Ort: Vierseithof Schmole in Horka“<br />
-       🕕 Uhrzeit: ab 18:00 Uhr<br />
-       🎁 Ich erwarte Euch!</p>
-  </div>
-
-  <script>
-    const quizData = [
-      {
-        question: "Grund der Einladung?",
-        answers: [
-          { text: "Häkeln mit Freunden und Bekannten", correct: false },
-          { text: "Stani wird 40ig", correct: true },
-          { text: "Yogaveranstaltung", correct: false },
-          { text: "Ostereier bemalen", correct: false },
-	  { text: "Literaturabend", correct: false },
-        ],
-      },
-    ];
-
-    let currentQuestionIndex = 0;
-
-    const questionEl = document.getElementById('question');
-    const answersEl = document.getElementById('answers');
-    const nextBtn = document.getElementById('next-btn');
-    const infoDiv = document.getElementById('info');
-
-    function showQuestion() {
-      clearState();
-      infoDiv.style.display = 'none';
-      let currentQuestion = quizData[currentQuestionIndex];
-      questionEl.innerText = currentQuestion.question;
-
-      currentQuestion.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('answer-btn');
-        if (answer.correct) {
-          button.dataset.correct = answer.correct;
-        }
-        button.addEventListener('click', selectAnswer);
-        answersEl.appendChild(button);
-      });
-    }
-
-    function clearState() {
-      nextBtn.style.display = 'none';
-      while (answersEl.firstChild) {
-        answersEl.removeChild(answersEl.firstChild);
-      }
-    }
-
-    function selectAnswer(e) {
-      const selectedBtn = e.target;
-      const correct = selectedBtn.dataset.correct === 'true';
-
-      Array.from(answersEl.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct === 'true');
-        button.disabled = true;
-      });
-
-      if (correct) {
-        window.open('info.html', '_blank');
-      } else {
-        window.open('wrong.html', '_blank');
-      }
-
-      nextBtn.style.display = 'inline-block';
-    }
-
-    nextBtn.addEventListener('click', () => {
-      currentQuestionIndex++;
-      if (currentQuestionIndex < quizData.length) {
-        showQuestion();
-      } else {
-        showEndMessage();
-      }
-    });
-
-    function setStatusClass(element, correct) {
-      clearStatusClass(element);
-      if (correct) {
-        element.classList.add('correct');
-      } else {
-        element.classList.add('wrong');
-      }
-    }
-
-    function clearStatusClass(element) {
-      element.classList.remove('correct');
-      element.classList.remove('wrong');
-    }
-
-    function showEndMessage() {
-      clearState();
-      questionEl.innerText = "Danke fürs Mitmachen! Wir freuen uns auf dich!";
-      infoDiv.style.display = 'none';
-      nextBtn.style.display = 'none';
-    }
-
-    showQuestion();
-  </script>
-</body>
-</html>
+  <button onclick="window.open('falsch_haekeln.html', '_blank')">Häkeln</button>
+  <button onclick="window.open('info.html', '_blank')">Stani wird 40ig</button>
+  <button onclick="window.open('falsch_literatur.html', '_blank')">Literaturabend</button>
+  <button onclick="window.open('falsch_yoga.html', '_blank')">Yoga</button>
+  <button onclic
