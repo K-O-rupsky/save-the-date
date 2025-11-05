@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Rrrichtig! 🎉</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdf6e3;
+      text-align: center;
+      padding: 2em;
+      color: #333;
+    }
+
+    h1 {
+      color: #27ae60;
+    }
+
+    form {
+      background-color: #fff;
+      display: inline-block;
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      margin: 2em auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 1em;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 0.5em;
+      margin-top: 0.3em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="radio"] {
+      margin-right: 0.5em;
+    }
+
+    .hinweis {
+      margin-top: 1em;
+      font-size: 0.9em;
+      color: #999;
+    }
+
+    button {
+      margin-top: 1.5em;
+      padding: 0.7em 2em;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background-color: #219150;
+    }
+
+    .bilder-upload {
+      margin-top: 2em;
+      padding: 1.5em;
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bilder-upload h3 {
+      margin-bottom: 0.3em;
+      color: #e67e22;
+    }
+
+    .upload-button {
+      display: inline-block;
+      margin-top: 1em;
+      padding: 0.8em 1.5em;
+      background-color: #e67e22;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .upload-button:hover {
+      background-color: #d35400;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 🔊 Audio wird beim Laden abgespielt -->
+  <audio id="rrrichtigAudio" autoplay>
+    <source src="audio/rrrichtig.mp3" type="audio/mpeg">
+    Dein Browser unterstützt kein Audioelement.
+  </audio>
+
+  <script>
+    // Versucht, Audio bei Seitenstart abzuspielen
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('rrrichtigAudio');
+      if (audio) {
+        audio.play().catch(() => {
+          console.log("Autoplay wurde blockiert.");
+        });
+      }
+    });
+  </script>
+
+  <h1>🎉 Rrrichtig geraten!</h1>
+  <p>Du bist herzlich eingeladen zum <strong>40. Geburtstag</strong>!</p>
+  <p><strong>Am: 24. Januar 2025<br>Ort: Wird noch bekannt gegeben</strong></p>
+  <p class="hinweis">Bitte gib uns bis zum <strong>03.01.2026</strong> Bescheid, ob du dabei bist!</p>
+
+  <form action="https://formspree.io/f/DEINE-ID-HIER" method="POST">
+    <label for="name">Vor- und Nachname:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label>Teilnahme:</label>
+    <input type="radio" id="ja" name="teilnahme" value="Ja" required>
+    <label for="ja" style="display:inline;">Ich komme</label><br>
+    <input type="radio" id="nein" name="teilnahme" value="Nein" required>
+    <label for="nein" style="display:inline;">Ich kann leider nicht</label>
+
+    <label for="freitext">Optional: Nachricht oder Hinweis für uns</label>
+    <textarea id="freitext" name="freitext" rows="3" placeholder="z. B. Ich bringe Kuchen mit!"></textarea>
+
+    <button type="submit">Absenden</button>
+  </form>
+
+  <div class="bilder-upload">
+    <h3>📷 Hast du schöne Bilder?</h3>
+    <p>
+      Wenn du während der Feier Fotos machst, kannst du sie gerne in meine Cloud hochladen.<br>
+      So haben wir alle schöne Erinnerungen zusammen!
+    </p>
+    <a href="DEIN-CLOUD-LINK-HIER" target="_blank" class="upload-button">
+      📤 Bilder hochladen
+    </a>
+  </div>
+
+</body>
+</html>

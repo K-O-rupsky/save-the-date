@@ -1,144 +1,170 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Einladung zum 40. Geburtstag</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<title>Rrrichtig! 🎉</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdf6e3;
+    color: #333;
+  }
 
+  .container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .side-image {
+    width: 40%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .left {
+    background-image: url('images/jung.jpeg');
+  }
+
+  .right {
+    background-image: url('images/alt.jpeg');
+  }
+
+  .form-wrapper {
+    width: 30%;
+    max-width: 500px;
+    padding: 2em;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  h1 {
+    color: #27ae60;
+  }
+
+  label {
+    display: block;
+    margin-top: 1em;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.3em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  input[type="radio"] {
+    margin-right: 0.5em;
+  }
+
+  button {
+    margin-top: 1.5em;
+    padding: 0.7em 2em;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  button:hover {
+    background-color: #219150;
+  }
+
+  .bilder-upload {
+    margin-top: 2em;
+    padding: 1.5em;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .bilder-upload h3 {
+    margin-bottom: 0.3em;
+    color: #e67e22;
+  }
+
+  .upload-button {
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0.8em 1.5em;
+    background-color: #e67e22;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 900px) {
     .container {
-      display: flex;
-      min-height: 100vh;
+      flex-direction: column;
     }
 
     .side-image {
-      width: 30%;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .left {
-      background-image: url('yoga.jpg'); /* ← hier Bildpfad anpassen */
-    }
-
-    .right {
-      background-image: url('yoga.jpg'); /* ← hier Bildpfad anpassen */
+      display: none;
     }
 
     .form-wrapper {
-      width: 40%;
-      padding: 2em;
-      box-sizing: border-box;
-      background-color: #fff;
-    }
-
-    h1 {
-      color: #e67e22;
-      text-align: center;
-    }
-
-    label {
-      display: block;
-      margin-top: 1em;
-      font-weight: bold;
-    }
-
-    input[type="text"], textarea {
       width: 100%;
-      padding: 0.5em;
-      margin-top: 0.3em;
-      box-sizing: border-box;
     }
-
-    .checkbox-group {
-      margin-top: 1em;
-    }
-
-    .checkbox-group label {
-      font-weight: normal;
-      display: block;
-      margin: 0.5em 0;
-    }
-
-    button {
-      margin-top: 2em;
-      background-color: #e67e22;
-      color: white;
-      border: none;
-      padding: 1em 2em;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    button:hover {
-      background-color: #d35400;
-    }
-
-    .zurueck {
-      text-align: center;
-      margin-top: 2em;
-    }
-
-    .zurueck a {
-      text-decoration: none;
-      color: #3498db;
-    }
-
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-      }
-
-      .side-image {
-        display: none;
-      }
-
-      .form-wrapper {
-        width: 100%;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-<div class="container">
-  <div class="side-image left"></div>
+  <!-- Audio beim Laden -->
+  <audio id="rrrichtigAudio" autoplay>
+    <source src="audio/rrrichtig.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('rrrichtigAudio');
+      if (audio) audio.play().catch(()=>{console.log("Autoplay blockiert");});
+    });
+  </script>
 
-  <div class="form-wrapper">
-    <h1>Einladung zum 40. Geburtstag</h1>
-    <p>Bitte gib Bescheid, ob du dabei sein kannst – <strong>bis spätestens 03.01.2026</strong>.</p>
+  <div class="container">
+    <div class="side-image left"></div>
 
-    <form action="https://formspree.io/f/mvgqgowa" method="POST">
-      <label for="vorname">Vorname</label>
-      <input type="text" id="vorname" name="vorname" required>
+    <div class="form-wrapper">
+      <h1>🎉 Rrrichtig geraten!</h1>
+      <p>Du bist herzlich eingeladen zum <strong>40. Geburtstag</strong>!</p>
+      <p><strong>Am: 24. Januar 2026<br>Ort: Schmole Hof in Horka<br>Start: 17:30 Uhr</strong></p>
 
-      <label for="nachname">Nachname</label>
-      <input type="text" id="nachname" name="nachname" required>
+      <form action="https://formspree.io/f/DEINE-ID-HIER" method="POST">
+        <label for="name">Zur besseren Planung, bitte bis zum 04.01.2026 abstimmen. <br> <br>Vor- und Nachname:</label>
+        <input type="text" id="name" name="name" required>
 
-      <div class="checkbox-group">
-        <label><input type="radio" name="teilnahme" value="ja" required> Ich nehme teil</label>
-        <label><input type="radio" name="teilnahme" value="nein"> Ich kann leider nicht teilnehmen</label>
+        <label>Teilnahme:</label>https://www.dropbox.com/scl/fo/4e26tdfcj9nk43fqpx4lm/AO5ezcBzwXqBNLMiKm0au6g?rlkey=4ovsbuk6dnto441p7elqqzpw0&st=ty52iqmh&dl=0
+        <input type="radio" id="ja" name="teilnahme" value="Ja" required>
+        <label for="ja" style="display:inline;">Ich komme</label><br>
+        <input type="radio" id="nein" name="teilnahme" value="Nein" required>
+        <label for="nein" style="display:inline;">Ich kann leider nicht</label>
+
+        <label for="freitext">Optional: Nachricht oder Hinweis für uns</label>
+        <textarea id="freitext" name="freitext" rows="3" placeholder="z. B. Ich bring Kuchen mit! :)"></textarea>
+
+        <button type="submit">Absenden</button>
+      </form>
+	<a href="save-the-date.html">🔙 Zurück zur Auswahl</a>
+      <div class="bilder-upload">
+        <h3>📷 Hast du schöne Bilder?</h3>
+        <p>Du hast schöne Bilder von mir/uns zusammen? dann kannst Du die gern hier hochladen, diese werden dann zur Feier, als Deko, die Wand veredeln <p>
+          Wenn du während der Feier Fotos machst, kannst Du diese ebenfalls in meine Cloud hochladen.
+        </p>
+        <a href="https://www.dropbox.com/scl/fo/4e26tdfcj9nk43fqpx4lm/AO5ezcBzwXqBNLMiKm0au6g?rlkey=4ovsbuk6dnto441p7elqqzpw0&st=ty52iqmh&dl=0" target="_blank" class="upload-button">📤 Bilder hochladen</a>
       </div>
-
-      <label for="nachricht">Möchtest Du mir noch etwas mitteilen? (optional)</label>
-      <textarea id="nachricht" name="nachricht" rows="4" placeholder="z. B. Ich bringe Kuchen mit 😊"></textarea>
-
-      <button type="submit">Absenden</button>
-    </form>
-
-    <div class="zurueck">
-      <a href="save-the-date.html">🔙 Zurück zur Startseite</a>
     </div>
-  </div>
 
-  <div class="side-image right"></div>
-</div>
+    <div class="side-image right"></div>
+  </div>
 
 </body>
 </html>

@@ -6,69 +6,109 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #fff8f0;
+      background-color: #f2f2f2;
       text-align: center;
-      padding: 3em;
+      padding: 2em;
       color: #333;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.2em;
-    }
-
-    .date {
-      font-size: 1.5em;
       color: #e67e22;
-      margin-bottom: 2em;
     }
 
-    .calendar {
-      font-size: 2em;
-      margin-right: 0.2em;
-      vertical-align: middle;
+    .kalender {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5em;
+      margin: 2em auto;
+      font-family: Arial, sans-serif;
+      color: #333;
     }
 
-    h2 {
+    .kalender-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #e67e22;
+      color: white;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      font-weight: bold;
+    }
+
+    .kalender-icon .monat {
+      background-color: #d35400;
+      padding: 5px 0;
+      font-size: 0.8em;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .kalender-icon .tag {
       font-size: 1.8em;
-      margin: 1em 0;
+      padding: 10px 0;
     }
 
-    button {
-      display: block;
-      width: 250px;
-      margin: 1em auto;
-      padding: 1em;
+    .kalender .text {
       font-size: 1.2em;
-      background-color: #f4a261;
+      line-height: 1.4em;
+    }
+
+    .frage {
+      margin-top: 3em;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .quiz {
+      margin-top: 2em;
+    }
+
+    .quiz button {
+      display: block;
+      margin: 1em auto;
+      padding: 1em 2em;
+      background-color: #e67e22;
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 5px;
+      font-size: 1em;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
-    button:hover {
-      background-color: #e76f51;
+    .quiz button:hover {
+      background-color: #d35400;
     }
   </style>
 </head>
 <body>
+
+  <h1>Save the Date!</h1>
+
   <div class="kalender">
-  <div class="kalender-icon">
-    <div class="monat">JAN</div>
-    <div class="tag">24</div>
+    <div class="kalender-icon">
+      <div class="monat">JAN</div>
+      <div class="tag">24</div>
+    </div>
+    <div class="text">
+      Merke dir den <strong>24. Januar 2026</strong><br>
+      Es steht etwas Besonderes an – errate was!
+    </div>
   </div>
-  <div class="text">
-    Save the Date<br>
-    – mehr erfährst du im Quiz!
+
+  <div class="frage">
+    Was steht an? 
+    Warum solltest du dir den 24.01.2026 freihalten?
   </div>
-</div>
 
-  <h2>Wofür?</h2>
+  <div class="quiz">
+    <button onclick="window.open('falsch_haekeln.html', '_blank')">Häkeln unter Freunden</button>
+    <button onclick="window.open('falsch_Literatur.html', '_blank')">Literaturabend</button>
+    <button onclick="window.open('info.html', '_blank')">40. Geburtstag Stani</button>    
+    <button onclick="window.open('falsch_yoga.html', '_blank')">Yoga für Anfänger</button>
+    <button onclick="window.open('falsch_ostereier.html', '_blank')">Ostereier malen</button>
+  </div>
 
-  <button onclick="window.open('falsch_haekeln.html', '_blank')">Häkeln</button>
-  <button onclick="window.open('info.html', '_blank')">Stani wird 40ig</button>
-  <button onclick="window.open('falsch_Literatur.html', '_blank')">Literaturabend</button>
-  <button onclick="window.open('falsch_yoga.html', '_blank')">Yoga</button>
-  <button onclic
+</body>
+</html>

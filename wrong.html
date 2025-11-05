@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Einladung zum 40. Geburtstag</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+      color: #333;
+    }
+
+    h1 {
+      color: #e67e22;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 1em;
+      font-weight: bold;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 0.5em;
+      margin-top: 0.3em;
+      box-sizing: border-box;
+    }
+
+    .checkbox-group {
+      margin-top: 1em;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+      display: block;
+      margin: 0.5em 0;
+    }
+
+    button {
+      margin-top: 2em;
+      background-color: #e67e22;
+      color: white;
+      border: none;
+      padding: 1em 2em;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #d35400;
+    }
+
+    .zurueck {
+      display: block;
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    .zurueck a {
+      text-decoration: none;
+      color: #3498db;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Einladung zum 40. Geburtstag</h1>
+  <p>Bitte gib Bescheid, ob du dabei sein kannst – <strong>bis spätestens 03.01.2026</strong>.</p>
+
+  <form action="https://formspree.io/f/mwkgbqop" method="POST">
+    <label for="vorname">Vorname</label>
+    <input type="text" id="vorname" name="vorname" required>
+
+    <label for="nachname">Nachname</label>
+    <input type="text" id="nachname" name="nachname" required>
+
+    <div class="checkbox-group">
+      <label><input type="radio" name="teilnahme" value="ja" required> Ich nehme teil</label>
+      <label><input type="radio" name="teilnahme" value="nein"> Ich kann leider nicht teilnehmen</label>
+    </div>
+
+    <label for="nachricht">Möchtest du uns noch etwas mitteilen? (optional)</label>
+    <textarea id="nachricht" name="nachricht" rows="4" placeholder="z. B. Ich bringe Kuchen mit 😊"></textarea>
+
+    <button type="submit">Absenden</button>
+  </form>
+
+  <div class="zurueck">
+    <a href="save-the-date.html">🔙 Zurück zur Startseite</a>
+  </div>
+
+</body>
+</html>
